@@ -1,0 +1,37 @@
+<div class="wh-modal flex-center">
+  <div class="wh-modal-form">
+    <h1 class="mb-35">{{ addItem ? 'Add' : 'Edit' }} item</h1>
+    <form [formGroup]="whForm" (ngSubmit)="submitForm()">
+      <div class="flex-between flex-wrap mb-35">
+        <div class="form-field mb-35">
+          <label for="code">Code</label>
+          <input type="text" id="code" formControlName="code">
+          <div class="err-msg" *ngIf="whForm.get('code').hasError('required') && formSubmitted">Code is required.</div>
+          <div class="err-msg" *ngIf="whForm.get('code').hasError('pattern') && formSubmitted">Code must contain 2-4 uppercase letters, space, 4-6 digits.</div>
+        </div>
+        <div class="form-field mb-35">
+          <label for="quantity">Quantity</label>
+          <input type="text" id="quantity" formControlName="quantity">
+          <div class="err-msg" *ngIf="whForm.get('quantity').hasError('required') && formSubmitted">Quantity is required.</div>
+        </div>
+        <div class="form-field mb-35">
+          <label for="floor">Floor</label>
+          <input type="text" id="floor" formControlName="floor">
+          <div class="err-msg" *ngIf="whForm.get('floor').hasError('required') && formSubmitted">Floor is required.</div>
+          <div class="err-msg" *ngIf="(whForm.get('floor').hasError('min') || whForm.get('floor').hasError('max')) && formSubmitted">Floor must be between 1-3.</div>
+        </div>
+        <div class="form-field mb-35">
+          <label for="section">Section</label>
+          <input type="text" id="section" formControlName="section">
+          <div class="err-msg" *ngIf="whForm.get('section').hasError('required') && formSubmitted">Section is required.</div>
+          <div class="err-msg" *ngIf="(whForm.get('section').hasError('min') || whForm.get('section').hasError('max')) && formSubmitted">Section must be between 1-3.</div>
+        </div>
+      </div>
+
+      <div class="flex-center">
+        <button class="btn-custom mr-15">Save</button>
+        <button type="button" class="btn-custom" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

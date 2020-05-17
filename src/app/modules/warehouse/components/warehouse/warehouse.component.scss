@@ -1,0 +1,23 @@
+.wh-content {
+  width: 940px;
+  padding: 40px 20px;
+
+  .wh-sidebar-filters {
+    flex-basis: 300px;
+  }
+
+  .wh-items {
+    flex-basis: calc(100% - 300px);
+  }
+
+  .action-filters {
+    .filter {
+      padding-left: 20px;
+      cursor: pointer;
+
+      &.active {
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<div class="wh-content">
+  <div class="wh-add-item flex-end">
+    <button class="btn-custom mb-35 bold" (click)="addWhItem = true">Add Warehouse Item +</button>
+  </div>
+
+  <div class="flex-between">
+    <div class="wh-sidebar-filters">
+      <div class="form-field mb-15">
+        <label for="filter-input">Filter:</label>
+        <input type="text" id="filter-input" [(ngModel)]="searchQuery" (ngModelChange)="filterByQuery()">
+      </div>
+
+      <div class="action-filters mb-15">
+        <div class="bold mb-10">Floors:</div>
+        <div class="filter mb-10" [ngClass]="{'active' : filterId === 'f1'}" (click)="filterList('floor', 1, 'f1')">
+          Floor 1
+        </div>
+        <div class="filter mb-10" [ngClass]="{'active' : filterId === 'f2'}" (click)="filterList('floor', 2, 'f2')">
+          Floor 2
+        </div>
+        <div class="filter mb-10" [ngClass]="{'active' : filterId === 'f3'}" (click)="filterList('floor', 3, 'f3')">
+          Floor 3
+        </div>
+      </div>
+
+      <div class="action-filters">
+        <div class="bold mb-10">Sections:</div>
+        <div class="filter mb-10" [ngClass]="{'active' : filterId === 's1'}" (click)="filterList('section', 1, 's1')">
+          Section 1
+        </div>
+        <div class="filter mb-10" [ngClass]="{'active' : filterId === 's2'}" (click)="filterList('section', 2, 's2')">
+          Section 2
+        </div>
+        <div class="filter mb-10" [ngClass]="{'active' : filterId === 's3'}" (click)="filterList('section', 3, 's3')">
+          Section 3
+        </div>
+      </div>
+    </div>
+
+    <div class="wh-items">
+      <ng-container *ngFor="let whItem of filteredWhItems">
+        <app-wh-item [whItem]="whItem" (itemId)="setItemId($event)" (openEdit)="editWhItem = true"></app-wh-item>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<app-add-edit-modal *ngIf="editWhItem"
+                    [(editItem)]="editWhItem"
+                    [whItemId]="editWhItemId"
+                    [filteredList]="filteredWhItems"
+                    (editedItem)="updateAndValidateList($event, 'edit')">
+</app-add-edit-modal>
+
+<app-add-edit-modal *ngIf="addWhItem"
+                    [(addItem)]="addWhItem"
+                    (addedItem)="updateAndValidateList($event, 'add')">
+</app-add-edit-modal>

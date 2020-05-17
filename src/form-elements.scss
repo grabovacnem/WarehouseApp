@@ -1,0 +1,49 @@
+
+.btn-custom {
+  outline: none;
+  border: none;
+  color: #fff;
+  background-color: #5f0000;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 20px;
+
+  &:hover {
+    background-color: darken(#5f0000, 3%);
+  }
+
+  &.sm {
+    padding: 0 20px;
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input {
+    padding: 5px 10px;
+    border: 1px solid #5f0000;
+    border-radius: 3px;
+    width: 250px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .err-msg {
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    width: 100%;
+    color: red;
+    font-size: 13px;
+  }
+}
